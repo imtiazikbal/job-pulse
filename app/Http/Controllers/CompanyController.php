@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Job;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\AppliedJob;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
@@ -127,7 +129,9 @@ class CompanyController extends Controller
     }
     function totalAppliedCount(Request $request){
         $details = AppliedJob::where('company_id', auth()->user()->id)->count();
-        return view('companies.analysis', compact('details'));
-        //return response()->json($details);
+     return view('companies.analysis', compact('details'));
+       // return response()->json($details);
     }
+
+   
 }

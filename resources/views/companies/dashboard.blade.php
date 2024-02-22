@@ -5,7 +5,7 @@
   <!-- Required meta tags --> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Job Pulse</title>
+  <title>Job Pulse-Comapanies Dashboard</title>
   <!-- base:css -->
   
   <link rel="stylesheet" href="{{ asset('assets') }}/vendors/mdi/css/materialdesignicons.min.css">
@@ -24,6 +24,7 @@
   <link rel="shortcut icon" href="{{ asset('assets') }}/images/favicon.png" />
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
   <style>
     .colored-toast.swal2-icon-success {
   background-color: #58f100 !important;

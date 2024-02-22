@@ -19,7 +19,8 @@ class JobController extends Controller
         try{
             //dd($request->all());
             $data = Job::create([
-                'user_id'=>auth()->user()->id,
+                //'user_id'=>auth()->user()->id,
+                'user_id'=>$request->user_id,
                 'title'=>$request->title,
                 'description'=>$request->description,
                 'exprience'=>$request->exprience,
@@ -71,7 +72,7 @@ class JobController extends Controller
                 'type'=>$request->type,
                 'employment_status'=>$request->employment_status
             ]);
-            return redirect()->back()->with('success', 'Job updated successfully');
+            return redirect('/jobs')->with('success', 'Job updated successfully');
             // return response()->json([
             //     'massage'=>'Data updated successfully',
             //     'data'=>$data
@@ -82,13 +83,13 @@ class JobController extends Controller
     }
 
 }
-function jobDelete(Request $request){
+function jobDelete(Request $request,$job_id){
 
     
     
     try{
-        $data = Job::where('id',$request->id)->where('user_id',auth()->user()->id)->delete();
-        return redirect()->back()->with('success', 'Job deleted successfully');
+        $data = Job::where('id',$job_id)->where('user_id',auth()->user()->id)->delete();
+        return redirect()->back()->with('warning', 'Job deleted successfully');
     }
     catch(Exception $e){
         return $e->getMessage();

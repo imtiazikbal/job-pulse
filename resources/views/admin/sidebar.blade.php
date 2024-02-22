@@ -29,7 +29,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ url('/Pages') }}">
           <i class="icon-command menu-icon"></i>
           <span class="menu-title">Pages</span>
         </a>

@@ -152,7 +152,6 @@ Route::get('/clear', function () {
     Artisan::call('config:cache');
     Artisan::call('route:clear');
     Artisan::call('optimize:clear');
-
 });
 
 Route::get('/job/store', [JobController::class, 'jobStore'])->name('job.store');
@@ -162,6 +161,9 @@ Route::post('/admin/companies/delete/{id}', [AdminController::class, 'Companiesd
 // Route::post('/changeStatus',[AdminController::class,'changeStatus']);
 Route::post('/admin/jobs/status/{id}', [AdminController::class, 'changeJobStatus']);
 Route::post('/admin/jobs/delete/{id}', [AdminController::class, 'jobDelete']);
+Route::get('/Pages/home',[HomeViewController::class,'pegesHome']);
+Route::view('/Pages','pages.home');
+
 
 //Top Comapnies
 require __DIR__ . '/auth.php';

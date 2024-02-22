@@ -24,6 +24,7 @@ class HomeViewController extends Controller
         }  
            // return $jobs;
     }
+    function pegesHome(){}
 
     
 }

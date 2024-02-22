@@ -23,7 +23,7 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title text-center">Active Job</h2>
+                <h2 class="card-title text-center">Pending Job</h2>
                <h5 class="text-center">{{ $PendingPostJob }}</h5>
                 </div>
         </div>

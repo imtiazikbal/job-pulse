@@ -192,4 +192,28 @@
             </div>
         </div>
     </div>
+    @if (Session::has('success'))
+    
+    <script>
+     
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-right',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast',
+  },
+  showConfirmButton: false,
+  timer: 3500,
+
+  timerProgressBar: true,
+})
+ Toast.fire({
+    icon: 'success',
+    title: "{{ Session::get('success') }}",
+  })
+    </script>
+    
+@endif
 @endsection

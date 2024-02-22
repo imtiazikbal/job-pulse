@@ -17,13 +17,13 @@
       </li>
      
       <li class="nav-item">
-        <a class="nav-link" href="#" >
+        <a class="nav-link" href="{{ url('admin/companies') }}" >
           <i class="icon-file menu-icon"></i>
           <span class="menu-title">Companies</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ url('admin/jobs') }}">
           <i class="icon-pie-graph menu-icon"></i>
           <span class="menu-title">Jobs</span>
         </a>

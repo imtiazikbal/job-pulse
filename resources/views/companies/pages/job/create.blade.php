@@ -4,9 +4,7 @@
         <div class="card">
 
             <div class="card-body">
-                @if (Session::has('message'))
-                    <p class="alert alert-info">{{ Session::get('message') }}</p>
-                @endif
+                
                 <h4 class="card-title">Horizontal Two column</h4>
                 <form class="form-sample" action="{{ url('/job/store') }}" method="GET">
                     <p class="card-description">
@@ -191,4 +189,28 @@
             </div>
         </div>
     </div>
+
+    @if (Session::has('success'))
+    
+    <script>
+     
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-right',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast',
+  },
+  showConfirmButton: false,
+  timer: 2500,
+  timerProgressBar: true,
+})
+ Toast.fire({
+    icon: 'success',
+    title: "{{ Session::get('success') }}",
+  })
+    </script>
+    
+@endif
 @endsection

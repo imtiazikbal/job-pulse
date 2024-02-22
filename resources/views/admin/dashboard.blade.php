@@ -20,10 +20,53 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
+  <script src="{{ asset('assets/css/css/style.css') }}"></script>
+  <script src="{{ asset('assets/css/css/progress.css') }}"></script>
+  <script src="{{asset('assets/js/axios.min.js')}}"></script>
+    <script src="{{asset('assets/js/config.js')}}"></script>
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('assets') }}/images/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    .colored-toast.swal2-icon-success {
+  background-color: #58f100 !important;
+}
+
+.colored-toast.swal2-icon-error {
+  background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+  background-color: #ff0000 !important;
+}
+
+.colored-toast.swal2-icon-info {
+  background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+  background-color: #f6f600 !important;
+}
+
+.colored-toast .swal2-title {
+  color: white;
+}
+
+.colored-toast .swal2-close {
+  color: white;
+}
+.colored-toast .swal2-html-container {
+  color: white;
+}
+  </style>
 </head>
 <body>
+  <div id="loader" class="LoadingOverlay d-none">
+    <div class="Line-Progress">
+        <div class="indeterminate"></div>
+    </div>
+    </div>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     @include('admin.navbar')
@@ -71,6 +114,11 @@
   <!-- Custom js for this page-->
   <script src="{{ asset('assets') }}/js/dashboard.js"></script>
   <!-- End custom js for this page-->
+  <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>

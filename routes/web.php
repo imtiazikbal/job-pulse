@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeViewController;
@@ -124,7 +125,9 @@ Route::view('/candidate/skill/page','candidates.pages.skill');
 Route::post('/candidate/skill/create', [CandidateSkillController::class, 'Create']);
 
 
+//admin job
 
+Route::get('/admin/companies',[AdminController::class,'AdminCompanies']);
 
 });
 
@@ -163,4 +166,18 @@ Route::view('/companies/register', 'companies.pages.registration-page');
 Route::get('/',[HomeViewController::class,'index']);
 Route::get('/analytics', [CompanyController::class, 'totalAppliedCount'])->name('totalAppliedCount');
 Route::get('/logout01',[AdminController::class,'logout01']);
+
+Route::get('/clear',function(){
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('route:clear');
+    Artisan::call('optimize:clear');
+ 
+});
+Route::get('/admin/jobs',[AdminController::class,'AdminJobs']);
+Route::post('/admin/companies/delete/{id}',[AdminController::class,'Companiesdelete']);
+// Route::post('/changeStatus',[AdminController::class,'changeStatus']);
+Route::post('/admin/jobs/status/{id}',[AdminController::class,'changeJobStatus']);
+Route::post('/admin/jobs/delete/{id}',[AdminController::class,'jobDelete']);
 require __DIR__ . '/auth.php';

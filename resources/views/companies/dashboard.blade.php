@@ -22,6 +22,40 @@
   <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('assets') }}/images/favicon.png" />
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    .colored-toast.swal2-icon-success {
+  background-color: #58f100 !important;
+}
+
+.colored-toast.swal2-icon-error {
+  background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+  background-color: #ff0000 !important;
+}
+
+.colored-toast.swal2-icon-info {
+  background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+  background-color: #f6f600 !important;
+}
+
+.colored-toast .swal2-title {
+  color: white;
+}
+
+.colored-toast .swal2-close {
+  color: white;
+}
+.colored-toast .swal2-html-container {
+  color: white;
+}
+  </style>
 </head>
 <body>
   <div class="container-scroller">

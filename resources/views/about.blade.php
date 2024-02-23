@@ -1,5 +1,5 @@
 @extends('layout.app1')
-@section('title', 'Home')
+@section('title', 'About')
 
 @section('content')
     <div class="container">
@@ -39,6 +39,7 @@
             </div>
         </div>
     </div>
+   
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -74,18 +75,77 @@
             </div>
         </div>
     </div>
-   
+    {{-- <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    
+                    <ol class="carousel-indicators">
+                    @foreach ($sliders as $slider)
+
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                        @endforeach
+                       
+                    </ol>
+                   
+                    <div class="carousel-inner">
+                        @foreach ($sliders as $slider)
+                            <div class="carousel-item active{{ $loop->first ? 'active' : '' }}">
+                                <img class="d-block w-100" src="{{ asset($slider->slider_image) }}"
+                                    alt="{{ $slider->name }}">
+                            </div>
+                        @endforeach
+                    </div>
+
+
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div> --}}
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="title text-center bg-light p-3">
-                    <h4>Top Companies</h4>
+                    <h4>Our Vision</h4>
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> 
     <div class="container">
+        <div class="row mt-5">
+            @foreach ($sliders as $detail)
+                <div class="col-md-12">
+                    
+                       
+                        <div class="details">
+                            {!! $detail->vision !!}
+                        </div>
+                   
+                </div>
+            @endforeach
+
+
+        </div>
+    </div> 
+     <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="title text-center bg-light p-3">
+                    <h4>Companies belive in us</h4>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+     <div class="container">
         <div class="row mt-5">
             @foreach ($details as $detail)
                 <div class="col-md-3">
@@ -95,7 +155,7 @@
                         </div>
                         <div class="details">
                             <h6>{{ $detail->name }}</h6>
-                            <span>Total Jobs: {{ $detail->job_count }}</span>
+                            
                         </div>
                     </div>
                 </div>
@@ -103,47 +163,12 @@
 
 
         </div>
-    </div>
+    </div> 
 
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="title text-center bg-light p-3">
-                    <h4>Recent Jobs</h4>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
 
 
-    <div class="container mt-5">
-        <div class="row d-flex">
-            @foreach ($jobs as $job)
-                <div class="col-md-3 mb-5">
-
-                    <div class="card" id="mr-5" style="width: 18rem;">
-                        <img src="{{ asset('assets/images/company/logo.png') }}" height="100" width="100"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h2 class="card-title">{{ $job->title }}
-                                <span class="badge badge-secondary">{{ $job->tag }}</span>
-                            </h2>
-                            <p class="card-text">Salary: {{ $job->salary }} | Vacancy: {{ $job->vacancy }} | Location :
-                                {{ $job->location }}</p>
-                            <a href="{{ route('salary.page', ['job_id' => $job->id, 'company_id' => $job->user_id]) }}"
-                                class="btn btn-primary">Apply Now</a>
-                        </div>
-                    </div>
-
-                </div>
-            @endforeach
-
-        </div>
-        <div class="d-flex justify-content-center mt-5">
-            {{ $jobs->links() }}
-        </div>
-
-    </div>
+    
     @include('client.footer')
 @endsection
 
@@ -203,8 +228,10 @@
     }
 
     .topCompany {
-        padding: 5px;
-        width: 250px;
+        display: flex;
+      
+       align-items: center;
+       padding: 10px;
 
 
         background-color: rgb(225, 225, 233);

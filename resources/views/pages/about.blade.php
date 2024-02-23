@@ -8,7 +8,7 @@
             <div class="card-body">
 
                 <h4 class="card-title">Home Page Slider</h4>
-                <form class="form-sample" action="{{ url('/store/slider') }}" enctype="multipart/form-data" method="POST">
+                <form class="form-sample" action="{{ url('about/slider/store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <p class="card-description">
                         Home Page
@@ -24,6 +24,16 @@
                                 </div>
                                 @if ($errors->has('slider_name'))
                                     <span class="text-danger">{{ $errors->first('slider_name') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group row">
+
+                                <label class="col-sm-3 col-form-label">Our Vision</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="vision" class="form-control" />
+                                </div>
+                                @if ($errors->has('vision'))
+                                    <span class="text-danger">{{ $errors->first('vision') }}</span>
                                 @endif
                             </div>
 
@@ -67,9 +77,11 @@
                                 <th>
                                     Slider Name
                                 </th>
+                                <th>Vision</th>
                                 <th>
                                     Status
                                 </th>
+                                <th>Status Update</th>
                                 <th>
                                     Action
                                 </th>
@@ -84,12 +96,13 @@
                                 <td>
                                     {{ $slider->slider_name }}
                                 </td>
+                                <td>{{ substr($slider->vision, 0, 20) }}</td>
                                 <td>
                                   {{ $slider->status }}
                                 </td>
                                 <td>
-                                    <form action="{{ url('/store/slider/update/'.$slider->id) }}" method="POST">
-
+                                    <form action="{{ url('/status/update/about/'.$slider->id) }}" method="POST">
+                                        @csrf
                                         <select name="status" id="" class="form-control">
                                             <option value="active">Active</option>
                                             <option value="inactive">Inactive</option>
@@ -99,7 +112,11 @@
                                     
                                 </td>
                                 <td>
-                                    <form action="{{ url('store/slider/delete') }}" method="POST">
+                                    <a href="{{ url('store/slider/edit/'.$slider->id) }}" class="btn btn-primary">Edit</a>
+                                    
+                                </td>
+                                <td>
+                                    <form action="{{ url('/delete/slider/about/'.$slider->id) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $slider->id }}">
                                         <input type="hidden" name="file_path" value="{{ $slider->slider_image }}">
@@ -112,7 +129,7 @@
                             
                             @endforeach
                             
-                        </tbody>
+                        </tbody> 
                     </table>
                 </div>
             </div>

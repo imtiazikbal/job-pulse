@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeViewController;
+use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\CandidateSkillController;
@@ -161,9 +162,18 @@ Route::post('/admin/companies/delete/{id}', [AdminController::class, 'Companiesd
 // Route::post('/changeStatus',[AdminController::class,'changeStatus']);
 Route::post('/admin/jobs/status/{id}', [AdminController::class, 'changeJobStatus']);
 Route::post('/admin/jobs/delete/{id}', [AdminController::class, 'jobDelete']);
-Route::get('/Pages/home',[HomeViewController::class,'pegesHome']);
-Route::view('/Pages','pages.home');
+Route::get('/Pages',[AdminController::class,'pegesHome']);
+Route::post('/store/slider',[AdminController::class,'storeSlider']);
+Route::post('/store/slider/update/{id}',[AdminController::class,'storeSliderUpdate']);
+Route::post('/store/slider/delete',[AdminController::class,'storeSliderDelete']);
+Route::get('/aboutPage',[AboutPageController::class,'aboutPage']);
+Route::get('/aboutPage/admin',[AdminController::class,'aboutPageAdmin']);
+Route::post('/aboutSliderUpdate/{id}',[AboutPageController::class,'aboutSliderUpdate']);
+Route::get('/store/slider/edit/{AboutData}',[AdminController::class,'aboutSliderStoreEdit']);
 
+Route::post('/store/slider/about/update/{id}',[AdminController::class,'storeSliderUpdateabout']);
+Route::post('/status/update/about/{slider}',[AdminController::class,'updateSliderStatusAbout']);
+Route::post('/delete/slider/about/{slider}',[AdminController::class,'deleteSliderStatusAbout']);
 
 //Top Comapnies
 require __DIR__ . '/auth.php';

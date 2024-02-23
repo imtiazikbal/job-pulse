@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Job;
+use App\Models\Home;
 use App\Models\User;
 use App\Models\AppliedJob;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class HomeViewController extends Controller
         try{
             $details = User::withCount('job')->where('role', 'companies')->orderBy('job_count', 'desc')->limit(4)->get();
         $jobs = Job::with('user')->where('status', 'active')->orderBy('created_at', 'desc')->limit(5)->paginate(5);
-        return view('home', compact('jobs', 'details'));
+       $sliders = Home::where('status', 'active')->get();
+        return view('home', compact('jobs', 'details', 'sliders'));
       // return $jobs;
             
           // return response()->json($details);
@@ -24,7 +26,5 @@ class HomeViewController extends Controller
         }  
            // return $jobs;
     }
-    function pegesHome(){}
 
-    
 }

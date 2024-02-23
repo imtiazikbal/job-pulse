@@ -29,11 +29,24 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          <i class="icon-head menu-icon"></i>
+          <span class="menu-title">Pages</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="auth" style="">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ url('/Pages') }}"> Home </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('/aboutPage/admin') }}"> About  </a></li>
+          </ul>
+        </div>
+      </li>
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{ url('/Pages') }}">
           <i class="icon-command menu-icon"></i>
           <span class="menu-title">Pages</span>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="icon-help menu-icon"></i>

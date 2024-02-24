@@ -13,7 +13,7 @@ class CandidateSkillController extends Controller
 
 
             //dd($request->all());
-            $data = CandidateSkill::create([
+           CandidateSkill::create([
                'user_id'=>auth()->user()->id,
                // input name skill save in database with array
               // $array = array_map('intval', explode(',', $string));
@@ -21,10 +21,8 @@ class CandidateSkillController extends Controller
               
             ]);
             
-            return response()->json([
-                'massage'=>'Data created successfully',
-                'data'=>$data
-            ]);
+
+            return redirect()->back()->with('success', 'Skill created successfully.');
         }catch(Exception $e){
             return $e->getMessage();
         }

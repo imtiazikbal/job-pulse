@@ -82,28 +82,25 @@ class CandidateController extends Controller
 
 
 public function appliedJob(Request $request){
-    try{
+ 
 
        //dd($request->all());
-        $data = AppliedJob::create([
+       $request->validate([
+          'current_salary' => 'required',
+          'excepted_salary' => 'required'
+       ]);
+         AppliedJob::create([
             'user_id'=>auth()->user()->id,
             'job_id'=>$request->job_id,
             'company_id'=>$request->company_id
         ]);
-        $salary = CandidateSalary::create([
+        CandidateSalary::create([
             'user_id'=>auth()->user()->id,
             'current_salary'=>$request->current_salary,
             'excepted_salary'=>$request->excepted_salary
         ]);
-        return response()->json([
-            'massage'=>'Data created successfully',
-            'data'=>$data,
-            'salary'=>$salary
-        ]);
-    }catch(Exception $e){
-        return $e->getMessage();
-        
-    }
+        return redirect('/appliedJobPage')->with('success', 'Applied successfully.');
+   
 }
 function appliedJobPage(Request $request){
     $jobs = AppliedJob::where('user_id',auth()->user()->id)->with('job','company')->get();
@@ -139,4 +136,10 @@ function candidateDetails(Request $request){
     $details = User::where('id',$request->user_id)->with('candidate','education','experience','training','skill')->first();
     return response()->json($details);
 }
+
+// function totalAppliedCount(Request $request){
+//     $details = AppliedJob::where('user_id', auth()->user()->id)->count();
+//  return view('candidates.home', compact('details'));
+//     //return response()->json($details);
+// }
 }

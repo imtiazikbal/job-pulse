@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeViewController;
 use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\ContactPageController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\CandidateSkillController;
 use App\Http\Controllers\CompanyContactController;
@@ -153,8 +155,10 @@ Route::get('/clear', function () {
     Artisan::call('config:cache');
     Artisan::call('route:clear');
     Artisan::call('optimize:clear');
-});
 
+   
+});
+Route::get('/candidateAppliedCount',[CandidateController::class,'totalAppliedCount']);
 Route::get('/job/store', [JobController::class, 'jobStore'])->name('job.store');
 
 Route::get('/admin/jobs', [AdminController::class, 'AdminJobs']);
@@ -170,10 +174,17 @@ Route::get('/aboutPage',[AboutPageController::class,'aboutPage']);
 Route::get('/aboutPage/admin',[AdminController::class,'aboutPageAdmin']);
 Route::post('/aboutSliderUpdate/{id}',[AboutPageController::class,'aboutSliderUpdate']);
 Route::get('/store/slider/edit/{AboutData}',[AdminController::class,'aboutSliderStoreEdit']);
-
 Route::post('/store/slider/about/update/{id}',[AdminController::class,'storeSliderUpdateabout']);
 Route::post('/status/update/about/{slider}',[AdminController::class,'updateSliderStatusAbout']);
 Route::post('/delete/slider/about/{slider}',[AdminController::class,'deleteSliderStatusAbout']);
 
-//Top Comapnies
+//Job Page
+Route::get('/allJobs',[JobPageController::class,'allJobs']);
+Route::get('/searchJob',[JobPageController::class,'searchJob']);
+//candidate applied jobs
+Route::get('/totalAppliedCount',[CandidateController::class,'totalAppliedCount']);
+
+
+//contact
+Route::get('/contact', [ContactPageController::class, 'contact']);
 require __DIR__ . '/auth.php';

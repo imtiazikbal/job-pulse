@@ -14,7 +14,7 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title text-center">Total Applied Job</h2>
+                <h2 class="card-title text-center">Total Post Job</h2>
                <h5 class="text-center">{{ $totalJobPost }}</h5>
                 </div>
         </div>

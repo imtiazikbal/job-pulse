@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('applied_jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
+            $table->foreignId('job_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+           $table->unsignedBigInteger('company_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

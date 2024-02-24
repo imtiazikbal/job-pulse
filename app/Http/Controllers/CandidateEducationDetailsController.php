@@ -11,7 +11,7 @@ class CandidateEducationDetailsController extends Controller
 public function educationStore(Request $request){
     try{
        
-        $data = CandidateEducationDetails::create([
+        CandidateEducationDetails::create([
             'user_id'=>auth()->user()->id,
             'bechelors'=>$request->bechelors,
             'hsc'=>$request->hsc,
@@ -31,10 +31,8 @@ public function educationStore(Request $request){
             
             
         ]);
-        return response()->json([
-            'massage'=>'Data created successfully',
-            'data'=>$data
-        ]);
+
+        return redirect()->back()->with('success', 'Education Details created successfully.');
     }catch(Exception $e){
         return $e->getMessage();
     }

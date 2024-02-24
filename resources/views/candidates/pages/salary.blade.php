@@ -15,7 +15,10 @@
                       @csrf
                       <label class="sr-only" for="inlineFormInputName2">Curent Salary</label>
                       <input type="text" name="current_salary" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Curent Salary">
-                        <input type="hidden" value="{{ request()->company_id }}" name="company_id">
+                      @if ($errors->has('current_salary'))
+                      <span class="text-danger">{{ $errors->first('current_salary') }}</span>
+                  @endif
+                      <input type="hidden" value="{{ request()->company_id }}" name="company_id">
                         <input type="hidden" name="job_id" value="{{ request()->job_id }}">
                       <label class="sr-only" for="inlineFormInputGroupUsername2">Exepted Salary</label>
                       <div class="input-group mb-2 mr-sm-2">
@@ -24,9 +27,12 @@
                         </div>
                         <input type="text" name="excepted_salary" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Exepted Salary">
                       </div>
+                      @if ($errors->has('excepted_salary'))
+                      <span class="text-danger">{{ $errors->first('excepted_salary') }}</span>
+                  @endif
                       <div class="form-check mx-sm-2">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" checked>
+                          <input type="checkbox" class="form-check-input">
                            
                         Agree with terms and conditions</label>
                       </div>
@@ -38,6 +44,25 @@
         </div>
     </div>
 </div>
+@if (Session::has('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+    })
+    Toast.fire({
+        icon: 'success',
+        title: "{{ Session::get('success') }}",
+    })
+</script>
+@endif
 @endsection
 <style>
     #mr-5{

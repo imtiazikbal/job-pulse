@@ -34,7 +34,7 @@ class CompanyController extends Controller
     }
     public function profile(Request $request)
     {
-        try {
+      
             
             $details = Company::create([
                 'user_id' => auth()->user()->id,
@@ -45,13 +45,8 @@ class CompanyController extends Controller
                 'license' => $request->license,
             ]);
 
-            return response()->json([
-                'message' => 'Profile Created Successfully',
-            ]);
-        } catch (Exception $e) {
-            return $e->getMessage();
-
-        }
+           return redirect()->back()->with('success', 'Profile created successfully.');
+       
     }
     
     function companyProfileEdit(Request $request){
@@ -62,7 +57,7 @@ class CompanyController extends Controller
 
     public function updateCompanyProfile(Request $request)
     {
-        try {
+       
             $details = Company::where('user_id', $request->user_id)->update([
                 'year_of_establishment' => $request->year_of_establishment,
                 'description' => $request->description,
@@ -70,24 +65,16 @@ class CompanyController extends Controller
                 'website' => $request->website,
                 'license' => $request->license,
             ]);
-            return response()->json([
-                'message' => 'Profile Updated Successfully',
-                'details' => $details,
-            ]);
+            return redirect()->back()->with('success', 'Profile Updated successfully.');
 
-        } catch (Exception $e) {
-            return $e->getMessage();
-
-        }
+       
     }
     public function deleteCompanyProfile(Request $request)
     {
         try {
             $details = Company::where('user_id', $request->user_id)->delete();
-            return response()->json([
-                'message' => 'Profile Deleted Successfully',
-                'details' => $details,
-            ]);
+
+            return redirect()->back()->with('warning', 'Profile Deleted successfully.');
 
         } catch (Exception $e) {
             return $e->getMessage();

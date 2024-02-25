@@ -6,41 +6,17 @@
  @include('pages.components.header')
             
    
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    
-                    <ol class="carousel-indicators">
-                    @foreach ($sliders as $slider)
-
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                        @endforeach
-                       
-                    </ol>
-                   
-                    <div class="carousel-inner">
-                        @foreach ($sliders as $slider)
-                            <div class="carousel-item active{{ $loop->first ? 'active' : '' }}">
-                                <img class="d-block w-100" src="{{ asset($slider->slider_image) }}"
-                                    alt="{{ $slider->name }}">
-                            </div>
-                        @endforeach
-                    </div>
-
-
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
+ <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <swiper-container class="mySwiper" scrollbar-hide="true">
+                @foreach ($sliders as $slider)
+                    <swiper-slide><img width="100%" height="70%"  src="{{ asset($slider->slider_image) }}" alt=""></swiper-slide>
+                @endforeach
+            </swiper-container>
         </div>
     </div>
+</div>
     {{-- <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -81,25 +57,15 @@
             <div class="col-md-12">
                 <div class="title text-center bg-light p-3">
                     <h4>Our Vision</h4>
+                    @foreach ($sliders as $slider )
+                        {!! $slider->vision!!} 
+                    @endforeach
+                   
                 </div>
             </div>
         </div>
     </div> 
-    <div class="container">
-        <div class="row mt-5">
-            @foreach ($sliders as $detail)
-                <div class="col-md-12">
-                    
-                       
-                        <div class="details">
-                            {!! $detail->vision !!}
-                        </div>
-                   
-                </div>
-            @endforeach
-
-
-        </div>
+    
     </div> 
      <div class="container">
         <div class="row mt-5">

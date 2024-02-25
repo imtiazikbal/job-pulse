@@ -31,9 +31,8 @@ use App\Http\Controllers\CandidateProfessionalTrainingController;
 |
  */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/welcome', function () {     return view('welcome');
+});
 Route::get('/dashboard', function () {
     switch (auth()->user()->role) {
         case 'admin':
@@ -172,8 +171,10 @@ Route::post('/store/slider/update/{id}',[AdminController::class,'storeSliderUpda
 Route::post('/store/slider/delete',[AdminController::class,'storeSliderDelete']);
 Route::get('/aboutPage',[AboutPageController::class,'aboutPage']);
 Route::get('/aboutPage/admin',[AdminController::class,'aboutPageAdmin']);
-Route::post('/aboutSliderUpdate/{id}',[AboutPageController::class,'aboutSliderUpdate']);
+Route::post('/about/slider/store',[AboutPageController::class,'aboutSliderStore']);
 Route::get('/store/slider/edit/{AboutData}',[AdminController::class,'aboutSliderStoreEdit']);
+Route::post('/aboutSliderUpdate/{id}',[AdminController::class,'aboutSliderUpdate']);
+
 Route::post('/store/slider/about/update/{id}',[AdminController::class,'storeSliderUpdateabout']);
 Route::post('/status/update/about/{slider}',[AdminController::class,'updateSliderStatusAbout']);
 Route::post('/delete/slider/about/{slider}',[AdminController::class,'deleteSliderStatusAbout']);
@@ -187,4 +188,9 @@ Route::get('/totalAppliedCount',[CandidateController::class,'totalAppliedCount']
 
 //contact
 Route::get('/contact', [ContactPageController::class, 'contact']);
+
+Route::get('/sliderPage',[HomeViewController::class,'sliderPage']);
+
+//Home job details page
+Route::get('/jobdetailsPage',[JobPageController::class,'jobdetailsPage']);
 require __DIR__ . '/auth.php';

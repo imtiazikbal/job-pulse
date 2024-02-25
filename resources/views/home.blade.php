@@ -2,44 +2,21 @@
 @section('title', 'Home')
 
 @section('content')
-   @include('pages.components.header')
-   
+    @include('pages.components.header')
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    
-                    <ol class="carousel-indicators">
+                <swiper-container class="mySwiper" scrollbar-hide="true">
                     @foreach ($sliders as $slider)
-
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                        @endforeach
-                       
-                    </ol>
-                   
-                    <div class="carousel-inner">
-                        @foreach ($sliders as $slider)
-                            <div class="carousel-item active{{ $loop->first ? 'active' : '' }}">
-                                <img class="d-block w-100" src="{{ asset($slider->slider_image) }}"
-                                    alt="{{ $slider->name }}">
-                            </div>
-                        @endforeach
-                    </div>
-
-
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                        <swiper-slide><img width="100%" height="50%"  src="{{ asset($slider->slider_image) }}" alt=""></swiper-slide>
+                    @endforeach
+                </swiper-container>
             </div>
         </div>
     </div>
-   
+
+
+
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
@@ -84,7 +61,7 @@
     <div class="container mt-5">
         <div class="row d-flex">
             @foreach ($jobs as $job)
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3 mb-5 mr-5">
 
                     <div class="card" id="mr-5" style="width: 18rem;">
                         <img src="{{ asset('assets/images/company/logo.png') }}" height="100" width="100"
@@ -93,7 +70,9 @@
                             <h2 class="card-title">{{ $job->title }}
                                 <span class="badge badge-secondary">{{ $job->tag }}</span>
                             </h2>
-                            <p class="card-text">Salary: {{ $job->salary }} | Vacancy: {{ $job->vacancy }} | Location :
+                            <h6>{{ $job->user->name }}</h6>
+                            <p class="card-text">Salary: {{ $job->salary }} | Vacancy: {{ $job->vacancy }} |
+                                Location :
                                 {{ $job->location }}</p>
                             <a href="{{ route('salary.page', ['job_id' => $job->id, 'company_id' => $job->user_id]) }}"
                                 class="btn btn-primary">Apply Now</a>
@@ -110,6 +89,8 @@
 
     </div>
     @include('client.footer')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
 @endsection
 
 
@@ -173,5 +154,43 @@
 
 
         background: lightblue;
+    }
+</style>
+
+<style>
+    html,
+    body {
+        position: relative;
+        height: 100%;
+    }
+
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 </style>

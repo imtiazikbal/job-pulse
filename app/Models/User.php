@@ -22,9 +22,7 @@ class User extends Authenticatable
         'role',
         'password',
     ];
-    public function company(){
-        return $this->hasOne(Company::class);
-    }
+ 
     public function contact(){
         return $this->hasOne(CompanyContact::class);
     }
@@ -36,6 +34,9 @@ class User extends Authenticatable
     }
     public function appliedJob(){
         return $this->hasMany(AppliedJob::class);       
+    }
+    public function company(){
+        return $this->hasMany(Company::class);
     }
 
     public function salary(){

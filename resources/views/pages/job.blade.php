@@ -42,7 +42,7 @@
     <div class="container mt-5">
         <div class="row d-flex">
             @foreach ($jobs as $job)
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3 mb-5 mr-5 p-3">
 
                     <div class="card" id="mr-5" style="width: 18rem;">
                         <img src="{{ asset('assets/images/company/logo.png') }}" height="100" width="100"

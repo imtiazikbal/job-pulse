@@ -89,11 +89,11 @@ function aboutPageAdmin(){
           $t=time();
           $file_name=$img->getClientOriginalName();
           $img_name="slider-{$t}-{$file_name}";
-          $img_url="uploads/{$img_name}";
+          $img_url="uploads/home/{$img_name}";
   
   
           // Upload File
-          $img->move(public_path('uploads'),$img_name);
+          $img->move(public_path('uploads/home'),$img_name);
           Home::create([
             'slider_name'=>$request->input('slider_name'),
             'slider_image'=>$img_url
@@ -119,6 +119,7 @@ function aboutPageAdmin(){
     }
     function deleteSliderStatusAbout(AboutPage $slider){
       // dd($slider);
+      File::delete($slider->slider_image);
       $slider->delete();
       return redirect()->back()->with('warning', 'Slider Deleted Successfully');
     }
@@ -150,4 +151,43 @@ function aboutPageAdmin(){
         auth()->logout();
         return redirect('/');
     }
+    function aboutSliderUpdate(Request $request, $id)
+{
+   //dd($request->all());
+    $request->validate([
+        'vision' => 'required',
+        'slider_name' => 'required',
+
+    ]);
+
+    if ($request->hasFile('slider_image')) {
+
+        $img = $request->file('slider_image');
+
+        $t = time();
+        $file_name = $img->getClientOriginalName();
+        $img_name = "slider-{$t}-{$file_name}";
+        $img_url = "uploads/{$img_name}";
+        //delete old file
+        $file_path = $request->input('file_path');
+        File::delete($file_path);
+
+        // Upload File
+        $img->move(public_path('uploads'), $img_name);
+        AboutPage::where('id', $id)->update([
+            'vision' => $request->input('vision'),
+            'slider_name' => $request->input('slider_name'),
+            'slider_image' => $img_url,
+        ]);
+
+        return redirect('/aboutPage/admin')->with('success', 'Slider Updated Successfully');
+    } else {
+
+        AboutPage::where('id', $id)->update([
+            'vision' => $request->input('vision'),
+            'slider_name' => $request->input('slider_name'),
+        ]);
+        return redirect('/aboutPage/admin')->with('success', 'Slider Updated Successfully');
+    }
+}
 }

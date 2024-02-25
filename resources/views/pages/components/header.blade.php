@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row navbar d-flex justify-content-center align-items-center">
         <div class="col-md-4">
             <div class="logo">
-                <img src="{{ asset('assets/images/jobPulse/logo.png') }}" width="15%" alt="">
+                <a href="{{ url('/') }}"><img src="{{ asset('assets') }}/images/jobPulse/logo.png" alt=""></a>
             </div>
         </div>
         <div class="col-md-8">
@@ -95,6 +95,6 @@
     }
 
     .navbar {
-  background: lightblue;
+  background: rgb(237, 241, 242);
 }
 </style>

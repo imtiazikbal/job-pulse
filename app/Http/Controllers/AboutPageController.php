@@ -12,11 +12,11 @@ class AboutPageController extends Controller
     public function aboutPage()
     {
         $sliders = AboutPage::where('status', 'active')->get();
-        $details = User::withCount('job')->where('role', 'companies')->orderBy('job_count', 'desc')->limit(4)->get();
-        $sliders = AboutPage::where('status', 'active')->get();
+        $company = User::withCount('job')->where('role', 'companies')->orderBy('job_count', 'desc')->limit(4)->get();
+      
 
         //return $sliders;
-        return view('about', compact('sliders', 'details', 'sliders'));
+        return view('fontend.pages.about', compact('company', 'sliders'));
     }
 
     public function aboutSliderStore(Request $request)

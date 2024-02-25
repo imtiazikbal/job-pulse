@@ -50,10 +50,12 @@
         </a>
         </li>
    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/logout01') }}">
-          <i class="icon-command menu-icon"></i>
-          <span class="menu-title">LogOut</span>
+   
+       
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/Candidate/profile/page') }}">
+          <i class="icon-head menu-icon"></i>
+          <span class="menu-title">Acount</span>
         </a>
       </li>
      
@@ -68,7 +70,12 @@
                 {{ __('Log Out') }}
             </x-dropdown-link>
          --}}
-       
+         <li class="nav-item">
+          <a class="nav-link" href="{{ url('/logout01') }}">
+            <i class="icon-command menu-icon"></i>
+            <span class="menu-title">LogOut</span>
+          </a>
+        </li>
       </li>
     </ul>
   </nav>

@@ -21,7 +21,7 @@
                 <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Search here...">
             </div>
 
-            <button type="submit"  class="btn btn-primary mb-2">Submit</button>
+            <button type="submit"  class="btn btn-primary mb-2">Search</button>
         </form>
 
                 </div>

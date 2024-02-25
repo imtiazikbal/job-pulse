@@ -20,18 +20,9 @@ use App\Http\Controllers\CandidateExperienceController;
 use App\Http\Controllers\CandidateEducationDetailsController;
 use App\Http\Controllers\CandidateProfessionalTrainingController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
- */
 
-Route::get('/welcome', function () {     return view('welcome');
+
+Route::get('/welcome', function () {return view('welcome');
 });
 Route::get('/dashboard', function () {
     switch (auth()->user()->role) {
@@ -78,6 +69,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/contactpage', [CompanyContactController::class, 'contactPage'])->name('company.contact.create');
     Route::get('/company/contact/create', [CompanyContactController::class, 'create'])->name('company.contact.create');
     Route::get('/company/contact/update', [CompanyContactController::class, 'update'])->name('company.contact.create');
+//profile account Candidate
+    Route::get('/Candidate/profile/page', [AdminController::class, 'CandidateProfile']);
+    Route::post('/candidate/change/password', [AdminController::class, 'CandidateChangePassword']);
+
+//Companies profile
+    Route::get('/company/profile/page', [AdminController::class, 'CompanyProfile']);
+    Route::post('/company/change/password', [AdminController::class, 'CompanyChangePassword']);
 
 //Copany post job
 
@@ -140,11 +138,9 @@ Route::get('/details', [CompanyController::class, 'companyDetails'])->name('deta
 Route::get('/candidate/details', [CandidateController::class, 'candidateDetails'])->name('candidate.details');
 
 ///view here
-
 Route::view('/candidate/register', 'candidates.pages.registration-page');
-
 Route::view('/companies/register', 'companies.pages.registration-page');
-Route::get('/', [HomeViewController::class, 'index']);
+Route::get('/app', [HomeViewController::class, 'index']);
 Route::get('/analytics', [CompanyController::class, 'totalAppliedCount'])->name('totalAppliedCount');
 Route::get('/logout01', [AdminController::class, 'logout01']);
 
@@ -155,42 +151,57 @@ Route::get('/clear', function () {
     Artisan::call('route:clear');
     Artisan::call('optimize:clear');
 
-   
+    Route::post('/about/slider/store', [AboutPageController::class, 'aboutSliderStore']);
+    Route::get('/store/slider/edit/{AboutData}', [AdminController::class, 'aboutSliderStoreEdit']);
+    Route::post('/aboutSliderUpdate/{id}', [AdminController::class, 'aboutSliderUpdate']);
+
+    Route::post('/store/slider/about/update/{id}', [AdminController::class, 'storeSliderUpdateabout']);
+    Route::post('/status/update/about/{slider}', [AdminController::class, 'updateSliderStatusAbout']);
+    Route::post('/delete/slider/about/{slider}', [AdminController::class, 'deleteSliderStatusAbout']);
+    Route::post('/store/slider', [AdminController::class, 'storeSlider']);
+    Route::post('/store/slider/update/{id}', [AdminController::class, 'storeSliderUpdate']);
+    Route::post('/store/slider/delete', [AdminController::class, 'storeSliderDelete']);
+
+    Route::post('/admin/companies/delete/{id}', [AdminController::class, 'Companiesdelete']);
+// Route::post('/changeStatus',[AdminController::class,'changeStatus']);
+    Route::post('/admin/jobs/status/{id}', [AdminController::class, 'changeJobStatus']);
+    Route::post('/admin/jobs/delete/{id}', [AdminController::class, 'jobDelete']);
+    Route::get('/candidateAppliedCount', [CandidateController::class, 'totalAppliedCount']);
+    Route::get('/job/store', [JobController::class, 'jobStore'])->name('job.store');
 });
-Route::get('/candidateAppliedCount',[CandidateController::class,'totalAppliedCount']);
-Route::get('/job/store', [JobController::class, 'jobStore'])->name('job.store');
 
 Route::get('/admin/jobs', [AdminController::class, 'AdminJobs']);
-Route::post('/admin/companies/delete/{id}', [AdminController::class, 'Companiesdelete']);
-// Route::post('/changeStatus',[AdminController::class,'changeStatus']);
-Route::post('/admin/jobs/status/{id}', [AdminController::class, 'changeJobStatus']);
-Route::post('/admin/jobs/delete/{id}', [AdminController::class, 'jobDelete']);
-Route::get('/Pages',[AdminController::class,'pegesHome']);
-Route::post('/store/slider',[AdminController::class,'storeSlider']);
-Route::post('/store/slider/update/{id}',[AdminController::class,'storeSliderUpdate']);
-Route::post('/store/slider/delete',[AdminController::class,'storeSliderDelete']);
-Route::get('/aboutPage',[AboutPageController::class,'aboutPage']);
-Route::get('/aboutPage/admin',[AdminController::class,'aboutPageAdmin']);
-Route::post('/about/slider/store',[AboutPageController::class,'aboutSliderStore']);
-Route::get('/store/slider/edit/{AboutData}',[AdminController::class,'aboutSliderStoreEdit']);
-Route::post('/aboutSliderUpdate/{id}',[AdminController::class,'aboutSliderUpdate']);
 
-Route::post('/store/slider/about/update/{id}',[AdminController::class,'storeSliderUpdateabout']);
-Route::post('/status/update/about/{slider}',[AdminController::class,'updateSliderStatusAbout']);
-Route::post('/delete/slider/about/{slider}',[AdminController::class,'deleteSliderStatusAbout']);
+Route::get('/Pages', [AdminController::class, 'pegesHome']);
+
+Route::get('/about', [AboutPageController::class, 'aboutPage']);
+Route::get('/aboutPage/admin', [AdminController::class, 'aboutPageAdmin']);
 
 //Job Page
-Route::get('/allJobs',[JobPageController::class,'allJobs']);
-Route::get('/searchJob',[JobPageController::class,'searchJob']);
+Route::get('/allJobs', [JobPageController::class, 'allJobs']);
+Route::get('/searchJob', [JobPageController::class, 'searchJob']);
 //candidate applied jobs
-Route::get('/totalAppliedCount',[CandidateController::class,'totalAppliedCount']);
-
+Route::get('/totalAppliedCount', [CandidateController::class, 'totalAppliedCount']);
 
 //contact
 Route::get('/contact', [ContactPageController::class, 'contact']);
 
-Route::get('/sliderPage',[HomeViewController::class,'sliderPage']);
+Route::get('/sliderPage', [HomeViewController::class, 'sliderPage']);
 
 //Home job details page
-Route::get('/jobdetailsPage',[JobPageController::class,'jobdetailsPage']);
+Route::get('/jobdetailsPage', [JobPageController::class, 'jobdetailsPage']);
+
+
+//fontend
+Route::get('/',[HomeViewController::class,'app']);
+Route::get('/findJobs',[JobPageController::class,'findJobs']);
+Route::get('/JobsDetails',[JobPageController::class,'JobsDetails'])->name('JobsDetails');
+Route::get('/jobs/filter/type',[JobPageController::class,'filterType']);
+Route::get('/jobs/filter/location',[JobPageController::class,'filterLocation']);
+Route::get('/jobs/filter/experience',[JobPageController::class,'filterExperience']);
+
+//home page filter
+Route::get('/jobs/filter/location/title',[JobPageController::class,'filterLocationTittle']);
+
+
 require __DIR__ . '/auth.php';

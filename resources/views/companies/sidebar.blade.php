@@ -59,12 +59,21 @@
           <span class="menu-title">Pages</span>
         </a>
       </li> 
+          
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/company/profile/page') }}">
+          <i class="icon-head menu-icon"></i>
+          <span class="menu-title">Acount</span>
+        </a>
+      </li>
+     
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/logout01') }}">
           <i class="icon-command menu-icon"></i>
           <span class="menu-title">LogOut</span>
         </a>
       </li>
+      
       
         
          {{-- <li class="nav-item">

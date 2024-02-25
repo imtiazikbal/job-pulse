@@ -14,12 +14,13 @@ class HomeViewController extends Controller
     public function index()
     {
         try{
-           $details = User::withCount('job')->where('role', 'companies')->orderBy('job_count', 'desc')->limit(4)->get();
+           $company = User::withCount('job')->where('role', 'companies')->orderBy('job_count', 'desc')->limit(3)->get();
           $jobs = Job::with('user')->where('status', 'active')->orderBy('created_at', 'desc')->limit(5)->paginate(5);
           $sliders = Home::where('status', 'active')->get();
         
-        return view('home', compact('jobs', 'details', 'sliders'));
-   // return $sliders;
+      //  return view('home', compact('jobs', 'details', 'sliders'));
+      //return view('fontend.pages.home', compact('jobs', 'details', 'sliders'));
+    return $sliders;
             
           // return response()->json($details);
         }catch(Exception $e){
@@ -27,6 +28,16 @@ class HomeViewController extends Controller
         }  
            // return $jobs;
     }
+    function app(){
+        $company = User::withCount('job')->where('role', 'companies')->orderBy('job_count', 'desc')->limit(3)->get();
+        
+        $jobs = Job::with('user')->where('status', 'active')->orderBy('created_at', 'desc')->limit(5)->paginate(5);
+
+      return view('fontend.pages.home', compact('jobs','company'));
+        
+    }
+
+   
 
     public function sliderPage()
     {

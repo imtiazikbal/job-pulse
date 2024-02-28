@@ -125,9 +125,9 @@ class CompanyController extends Controller
         $experience = CandidateExperience::where('user_id', $request->user_id)->with('experience')->get();
        
        
-      //  return $details;
+      // return $details;
      // return $experience;
-     return view('companies.pages.profile.cv', compact('details', 'experience'));
+    return view('companies.pages.profile.cv', compact('details', 'experience'));
        
        // return response()->json($details);
     }

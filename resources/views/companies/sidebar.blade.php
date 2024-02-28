@@ -51,6 +51,12 @@
           <i class="icon-help menu-icon"></i>
           <span class="menu-title">Who Applied</span>
         </a>
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('companies/shortlisted/user') }}">
+          <i class="icon-help menu-icon"></i>
+          <span class="menu-title">Short Listed Candidates</span>
+        </a>
       </li>
       
       <li class="nav-item">

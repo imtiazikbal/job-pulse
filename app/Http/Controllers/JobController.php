@@ -95,8 +95,10 @@ class JobController extends Controller
     public function whoApplied(Request $request)
     {
         $jobs = AppliedJob::where('company_id', '=', auth()->user()->id)->with('job', 'user', 'is_short_list')->get();
-        // $jobs= ShortList::with('job','user')->get();
-        //return $jobs;
+        //$jobs= ShortList::with('job','user')->get();
+       // return $jobs;
+      // $jobs = ShortList::where('company_id', '=', auth()->user()->id)->with('job', 'user')->get();
+       
         return view('companies.pages.job.whoApplied', compact('jobs'));
     }
 
@@ -128,7 +130,14 @@ class JobController extends Controller
         });
         return redirect()->back()->with('success', 'Candidate shortlisted successfully and send mail');
 
-        //  return "mail send";
+      
 
+    }
+    function shortlistedUser(){
+
+        $jobs = ShortList::where('company_id', '=', auth()->user()->id)->with('job', 'user')->where('is_short_list', 1)->get();
+        
+        return view('companies.pages.job.shortlistUser', compact('jobs'));
+        
     }
 }

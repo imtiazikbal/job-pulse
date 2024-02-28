@@ -1,5 +1,53 @@
 @extends('candidates.dashboard')
 @section('content')
+
+
+<div class="col-lg-12 mt-4 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Education</h4>
+            
+            <div class="table-responsive">
+                <table class="table table-hover" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Dasignation</th>
+                            <th>Joining Date</th>
+                            <th>Depature Time</th>
+                            <th>Action</th>
+                           
+                            
+                        </tr>
+                    </thead>
+              
+                        <tbody>
+                    @foreach ($experience as $experience )
+    
+
+                            <tr>
+                                <td>{{$experience->company_name  }}</td>
+                                <td>{{ $experience->designation }}</td>
+                               
+                               
+                               <td>{{ $experience->joining_date }}</td>
+                               <td>{{ $experience->departure_date }}</td>
+                                <td class="d-flex">
+                                   
+
+
+                             
+                                    <form method="POST" action="{{ url('experience/delete/'. $experience->id ) }}">
+                                        @csrf
+
+                                        <button type="submit" class="btn btn-danger confirm-button">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                  
+                </table>
 <div class="col-12 grid-margin">
     <div class="card">
         
@@ -64,4 +112,27 @@
         </div>
     </div>
 </div>
+@if (session()->has('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+    })
+
+    ;
+    (async () => {
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+        })
+    })()
+</script>
+@endif
 @endsection

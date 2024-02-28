@@ -23,7 +23,7 @@
                     <h2 class="contact-title">Get in Touch</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                    <form class="form-contact contact_form" action="{{ URL('/contact/mail') }}" method="GET" >
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -108,4 +108,27 @@
              </div>
         </div>
     </section>
+    @if (session()->has('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+    })
+
+    ;
+    (async () => {
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+        })
+    })()
+</script>
+@endif
 @endsection

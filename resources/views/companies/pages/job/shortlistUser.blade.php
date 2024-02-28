@@ -37,14 +37,14 @@
                   <input type="hidden" name="job_id" value="{{ $job->job->id }}">
                   <input type="hidden" name="company_id" value="{{ $job->company_id }}">
 
-<button type="submit" class="btn btn-primary">ShortList</button>
+<button type="submit" class="btn btn-primary">{{ $job->is_short_list=='1' ? 'ShortListed':'Not ShortList' }}</button>
   
 
                 </form>
               </td>
 
              
-           
+             
                 
              
 

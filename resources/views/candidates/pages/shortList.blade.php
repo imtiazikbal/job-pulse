@@ -18,7 +18,7 @@
                           <th>Company Name</th>
                           <th>Location</th>
                           <th>Selary</th>
-                         
+                          <th>Selected Shortlist</th>
 
                           {{-- <th>Action</th> --}}
                         </tr>
@@ -32,7 +32,7 @@
                           <td>{{ $job->job->location }}</td>
                           <td class="text-success"> {{$job->job->salary }}</td>
                      
-                     
+                      <td>  <label class="badge badge-success">{{ $job->is_short_list=='1'? 'Yes' : 'No' }}</label></td>
                         
                      
                             

@@ -77,8 +77,9 @@ Route::post('/company/profile/edit/update/{company}', [CompanyController::class,
 
     Route::get('/contactpage', [CompanyContactController::class, 'contactPage'])->name('company.contact.create');
     Route::get('/company/contact/create', [CompanyContactController::class, 'create'])->name('company.contact.create');
+   
     Route::get('/company/contact/update', [CompanyContactController::class, 'update'])->name('company.contact.create');
-//profile account Candidate
+    //profile account Candidate
     Route::get('/Candidate/profile/page', [AdminController::class, 'CandidateProfile']);
     Route::post('/candidate/change/password', [AdminController::class, 'CandidateChangePassword']);
 
@@ -99,6 +100,7 @@ Route::post('/company/profile/edit/update/{company}', [CompanyController::class,
     Route::get('/whoApllied', [JobController::class, 'whoApplied'])->name('who.aplied');
     Route::get('/viewProfile', [JobController::class, 'viewProfile'])->name('viewProfile');
     Route::get('/details/appliedJob', [CompanyController::class, 'appliedJobDetails'])->name('details');
+    Route::get('/companies/shortlisted/user',[JobController::class,'shortlistedUser']);
 //create candidate
     Route::get('/candidate/profile/create', [CandidateController::class, 'profile'])->name('candidate.profile');
     Route::get('/candidate/profile/update', [CandidateController::class, 'updateprofile'])->name('candidate.profile.update');
@@ -107,14 +109,17 @@ Route::post('/company/profile/edit/update/{company}', [CompanyController::class,
     Route::post('/applied/job', [CandidateController::class, 'appliedJob'])->name('applied.job');
     Route::get('/salaryPage', [CandidateSalaryController::class, 'salaryPage'])->name('salary.page');
     Route::get('/appliedJobPage', [CandidateController::class, 'appliedJobPage'])->name('applied.job.page');
-
+    Route::get('/shortlistJobs',[CandidateController::class, 'shortlistJobs']);
 // Candidate Education Store
-    Route::view('/educationCreatePage', 'candidates.pages.education');
+    Route::get('/educationCreatePage',[CandidateEducationDetailsController::class, 'educationCreatePage'])->name('education.create.page');
     Route::post('/candidate/education/store', [CandidateEducationDetailsController::class, 'educationStore'])->name('education.store');
-// Candidate Job Experience
-    Route::view('job/experience', 'candidates.pages.experience');
+    Route::post('/candidate/education/delete/{education}', [CandidateEducationDetailsController::class, 'educationDelete'])->name('education.store');
+    
+    // Candidate Job Experience
+    Route::get('job/experience',[CandidateExperienceController::class, 'jobExperience']);
     Route::POST('/candidate/job/experience/create', [CandidateExperienceController::class, 'jobExperienceCreate'])->name('candidate.job.experience');
-
+    Route::POST('/experience/delete/{experience}', [CandidateExperienceController::class, 'jobExperienceDelete'])->name('candidate.job.experience');
+    
 /// Professional Training
     Route::view('job/traning', 'candidates.pages.training');
 
@@ -206,6 +211,7 @@ Route::get('/totalAppliedCount', [CandidateController::class, 'totalAppliedCount
 
 //contact
 Route::get('/contact', [ContactPageController::class, 'contact']);
+Route::get('/contact/mail', [ContactPageController::class, 'contactMail'])->name('contact.mail');
 
 Route::get('/sliderPage', [HomeViewController::class, 'sliderPage']);
 

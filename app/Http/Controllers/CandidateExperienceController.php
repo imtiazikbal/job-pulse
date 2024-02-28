@@ -8,6 +8,12 @@ use App\Models\CandidateExperience;
 
 class CandidateExperienceController extends Controller
 {
+
+    function jobExperience(){
+        $experience = CandidateExperience::where('user_id',auth()->user()->id)->get();
+        
+        return view('candidates.pages.experience',compact('experience'));
+    }
     function jobExperienceCreate(Request $request){
         try{
             //dd($request->all());   
@@ -18,14 +24,14 @@ class CandidateExperienceController extends Controller
                     'joining_date'=>$request->joining_date,
                     'depature_time'=>$request->depature_time
                 ]);
-            return redirect()->back()->with('success', 'Data created successfully');
+            return redirect()->back()->with('success', 'Experience created successfully');
 
-                // return response()->json([
-                //     'massage'=>'Data created successfully',
-                //     'data'=>$data
-                // ]);
         }catch(Exception $e){
             return $e->getMessage();
         }
+    }
+    function jobExperienceDelete(CandidateExperience $experience){
+        $experience->delete();
+        return redirect()->back()->with('success', 'Experience deleted successfully');
     }
 }

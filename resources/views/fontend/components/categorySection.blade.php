@@ -1,5 +1,5 @@
 <!-- Our Services Start -->
-<div class="our-services section-pad-t30">
+<div class="our-services section-pad-t30 h1-testimonial-active dot-style">
     <div class="container">
         <!-- Section Tittle -->
         <div class="row">

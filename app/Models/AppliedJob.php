@@ -22,6 +22,6 @@ class AppliedJob extends Model
         return $this->belongsTo(User::class);
     }
     function is_short_list(){
-        return $this->belongsTo(ShortList::class);
+        return $this->belongsTo(ShortList::class,'job_id','job_id');
     }
 }

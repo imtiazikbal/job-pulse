@@ -8,10 +8,21 @@ use App\Models\CandidateEducationDetails;
 
 class CandidateEducationDetailsController extends Controller
 {
+
+
+    function educationCreatePage(){
+        
+        $education = CandidateEducationDetails::where('user_id',auth()->user()->id)->first();
+
+        if($education){
+            return view('candidates.pages.education',compact('education'));
+        }
+        return view('candidates.pages.createEducation');
+    }
 public function educationStore(Request $request){
     try{
        
-        CandidateEducationDetails::create([
+        CandidateEducationDetails::updateOrCreate([
             'user_id'=>auth()->user()->id,
             'bechelors'=>$request->bechelors,
             'hsc'=>$request->hsc,
@@ -32,9 +43,15 @@ public function educationStore(Request $request){
             
         ]);
 
-        return redirect()->back()->with('success', 'Education Details created successfully.');
+        return redirect()->back()->with('success', 'Education Details created/updated successfully.');
     }catch(Exception $e){
         return $e->getMessage();
     }
+}
+
+function educationDelete(CandidateEducationDetails $education){
+
+    $education->delete();
+    return redirect()->back()->with('success', 'Education Details deleted successfully.');
 }
 }

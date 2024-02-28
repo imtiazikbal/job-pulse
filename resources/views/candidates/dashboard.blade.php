@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     .colored-toast.swal2-icon-success {
@@ -101,6 +103,14 @@
   <!-- Custom js for this page-->
   <script src="{{ asset('assets') }}/js/dashboard.js"></script>
   <!-- End custom js for this page-->
+</script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+
+
+  <script>
+    let table = new DataTable('#myTable');
+  </script>
 </body>
 
 </html>

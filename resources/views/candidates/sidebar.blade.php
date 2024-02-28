@@ -25,6 +25,13 @@
           <span class="menu-title">Applied Jobs</span>
         </a>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('shortlistJobs') }}">
+          <i class="icon-file menu-icon"></i>
+          <span class="menu-title">Short List</span>
+        </a>
+      </li>
        <li class="nav-item">
         <a class="nav-link" href="{{ url('/educationCreatePage') }}">
           <i class="icon-pie-graph menu-icon"></i>

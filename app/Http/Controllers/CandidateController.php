@@ -104,9 +104,10 @@ public function appliedJob(Request $request){
    
 }
 function appliedJobPage(Request $request){
-    $jobs = ShortList::where('user_id',auth()->user()->id)->with('job','company')->get();
+   // $jobs = ShortList::where('user_id',auth()->user()->id)->with('job','company')->get();
     //return response()->json($jobs);
-   return view('candidates.pages.applied_job',compact('jobs'));
+  $jobs = AppliedJob::where('user_id',auth()->user()->id)->with('job','company')->get();
+    return view('candidates.pages.applied_job',compact('jobs'));
 }
 
 

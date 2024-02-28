@@ -1,14 +1,15 @@
 <header>
     <!-- Header Start -->
-   <div class="header-area header-transparrent">
-       <div class="headder-top header-sticky">
+    <div class="header-area header-transparrent">
+        <div class="headder-top header-sticky">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-2">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img width="50%" src="{{ asset('assets') }}/images/jobPulse/logo.png" alt=""></a>
-                        </div>  
+                            <a href="{{ url('/') }}"><img width="50%"
+                                    src="{{ asset('assets') }}/images/jobPulse/logo.png" alt=""></a>
+                        </div>
                     </div>
                     <div class="col-lg-9 col-md-9">
                         <div class="menu-wrapper">
@@ -30,19 +31,19 @@
                                         <li><a href="{{ url('/contact') }}">Contact</a></li>
                                     </ul>
                                 </nav>
-                            </div>          
+                            </div>
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
                                 @auth
-                                <a href="{{ url('/dashboard') }}" class="btn head-btn1">Dashboard</a>
-                                    
+                                    <a href="{{ url('/dashboard') }}" class="btn head-btn1">{{ Auth::user()->name }}</a>
+
                                 @endauth
                                 @guest
-                                <a href="{{ url('/candidate/register') }}" class="btn head-btn1">Cadidate</a>
-                                <a href="{{ url('/companies/register') }}" class="btn head-btn1">Companies</a>
-                                <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
+                                    <a href="{{ url('/candidate/register') }}" class="btn head-btn1">Cadidate</a>
+                                    <a href="{{ url('/companies/register') }}" class="btn head-btn1">Companies</a>
+                                    <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
                                 @endguest
-                               
+
                             </div>
                         </div>
                     </div>
@@ -52,7 +53,7 @@
                     </div>
                 </div>
             </div>
-       </div>
-   </div>
+        </div>
+    </div>
     <!-- Header End -->
 </header>

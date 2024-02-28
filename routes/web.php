@@ -22,7 +22,8 @@ use App\Http\Controllers\CandidateProfessionalTrainingController;
 
 
 
-Route::get('/welcome', function () {return view('welcome');
+Route::get('/welcome', function () 
+{return view('welcome');
 });
 Route::get('/dashboard', function () {
     switch (auth()->user()->role) {
@@ -44,10 +45,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
@@ -58,7 +65,9 @@ Route::middleware(['auth'])->group(function () {
 //Route::view('/profilepage','companies.pages.profile-page');
 
     Route::get('/company/profile/create', [CompanyController::class, 'profile'])->name('company.profile');
-
+    Route::get('/company/profile/edit/{company}', [CompanyController::class, 'ProfileEdit'])->name('company.profile');
+Route::post('/company/profile/edit/update/{company}', [CompanyController::class, 'ProfileUpdate'])->name('company.profile');
+    
     Route::get('/profilepage', [CompanyController::class, 'companyProfileEdit']);
     Route::get('/company/profile/update', [CompanyController::class, 'updateCompanyProfile'])->name('company.update');
     Route::get('/profile/delete', [CompanyController::class, 'deleteCompanyProfile'])->name('company.delete');
@@ -171,6 +180,10 @@ Route::get('/clear', function () {
     
 });
 
+
+
+
+
 //admin routes
     Route::post('/admin/change/job/status', [AdminController::class, 'adminChangeJobStatus']);
     Route::post('/admin/jobs/delete/{id}', [AdminController::class, 'jobDelete']);
@@ -214,5 +227,6 @@ Route::get('/jobs/filter/relevance/old',[JobPageController::class,'filterRelevan
 Route::get('/jobs/filter/category/type',[JobPageController::class,'filterCategoryType']);
 Route::get('/jobs/filter/category/type/get',[JobPageController::class,'filterCategoryTypeGet'])->name('filterCategoryTypeGet');
 
-
+/// super admin login
+Route::view('/jobPulse','admin.pages.login');
 require __DIR__ . '/auth.php';

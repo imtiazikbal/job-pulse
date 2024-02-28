@@ -3,29 +3,29 @@
 
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">Bordered table</h4>
-    <p class="card-description">
-      Add class <code>.table-bordered</code>
-    </p>
+    <h4 class="card-title">Company Profile Details</h4>
+    
     <div class="table-responsive pt-3">
-      <table class="table table-bordered">
+      <table class="table table-bordered" id="myTable">
         <thead>
           <tr>
             <th>
               #
             </th>
             <th>
-              First name
+              Type 
             </th>
             <th>
-              Progress
+             Website 
             </th>
             <th>
-              Amount
+             Licence
             </th>
             <th>
-              Deadline
+             Established Date
             </th>
+            <th>Action</th>
+
           </tr>
         </thead>
         <tbody>
@@ -34,19 +34,18 @@
               1
             </td>
             <td>
-              Herman Beck
+            {{ $company->type }}
             </td>
             <td>
-              <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              {{ $company->website }}
             </td>
             <td>
-              $ 77.99
+              {{ $company->license }}
             </td>
             <td>
-              May 15, 2015
+              {{ $company->year_of_establishment }}
             </td>
+            <td><a class="btn btn-primary" href=" {{ url('/company/profile/edit/'.$company->id) }}" >Edit</a></td>
           </tr>
           
         </tbody>
@@ -90,5 +89,27 @@
       </div>
     </div>
   </div>
-  
+  @if (session()->has('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+            popup: 'colored-toast',
+        },
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+    })
+
+    ;
+    (async () => {
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+        })
+    })()
+</script>
+@endif
 @endsection

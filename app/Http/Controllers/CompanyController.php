@@ -49,11 +49,28 @@ class CompanyController extends Controller
            return redirect()->back()->with('success', 'Profile created successfully.');
        
     }
+
+    function ProfileEdit(Company $company){
+
+        return view('companies.pages.editProfile', compact('company'));
+    }
+    function ProfileUpdate(Request $request,$company){
+
+        Company::where('id',$company)->update([
+            'year_of_establishment' => $request->year_of_establishment,
+            'description' => $request->description,
+            'type' => $request->type,
+            'website' => $request->website,
+            'license' => $request->license,
+        ]);
+        return redirect('/profilepage')->with('success', 'Profile Updated successfully.');
+    }
     
     function companyProfileEdit(Request $request){
         
         $company = Company::where('user_id', auth()->user()->id)->first();
-        return view('companies.pages.profile-page', compact('company'));
+   // return $company;
+      return view('companies.pages.profile-page', compact('company'));
     }
 
     public function updateCompanyProfile(Request $request)

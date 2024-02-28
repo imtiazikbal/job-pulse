@@ -13,6 +13,7 @@ use App\Models\CompanyContact;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -29,10 +30,11 @@ class AdminController extends Controller
     }
     public function AdminJobs()
     {
-        $jobsActive = Job::with('user')->where('status', 'active')->get();
+        $jobsActive = Job::with('user')->get();
+        
         $jobsInactive = Job::with('user')->where('status', 'inactive')->get();
         // return [$jobsActive, $jobsInactive];
-        return view('admin.pages.jobs', compact('jobsActive', 'jobsInactive'));
+       return view('admin.pages.jobs', compact('jobsActive', 'jobsInactive'));
     }
     public function AdminCompanies()
     {
@@ -49,11 +51,26 @@ class AdminController extends Controller
     }
  function adminChangeJobStatus(Request $request)
     {
-//dd($request->all());
+       // dd($request->all());
+
         $id = $request->input('id');
         Job::where('id', $id)->update([
             'status' => $request->input('status'),
         ]);
+        
+        $user = User::where('id', $request->input('user_id'))->first();
+        $job= Job::where('id', $id)->first();
+        $data =[
+            'name' => $user->name,
+            'email' => $user->email,
+            'job' => $job->title,
+            'status' => $job->status
+        ];
+        
+        Mail::send(['html' => 'mail.jobStatus'], $data, function ($message) use ($data) {
+            $message->to($data['email']);
+            $message->subject('Job Status');
+        });
         return redirect()->back()->with('success', 'Job Status Changed Successfully');
 
     }

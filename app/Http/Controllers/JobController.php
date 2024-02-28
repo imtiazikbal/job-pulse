@@ -40,7 +40,7 @@ class JobController extends Controller
                 'type' => $request->type,
                 'employment_status' => $request->employment_status,
             ]);
-            return redirect()->back()->with('success', 'Job created successfully');
+            return redirect('/jobs')->with('success', 'Job created successfully');
 
         } catch (Exception $e) {
             return $e->getMessage();

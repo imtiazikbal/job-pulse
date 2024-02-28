@@ -25,13 +25,14 @@
                 <td scope="row">{{ $loop->iteration }}</td>
                 <td>{{ $jobsActive->title }}</td>
                 <td>{{ $jobsActive->user->name }}</td>
-                <td><label class="badge badge-success">{{ $jobsActive->status }}</label></td>
+                <td><label class="badge badge-{{ $jobsActive->status=='active'?'success':'warning' }}">{{ $jobsActive->status=='active'?'Active':'Inactive' }}</label></td>
              
                
                 <td>
                     <form action="{{ url('/admin/change/job/status') }}" method="POST">
                         @csrf
                        <input type="hidden" name="id" value="{{ $jobsActive->id }}">
+                       <input type="hidden" name="user_id" value="{{ $jobsActive->user->id }}">
                             <div class="row">
                                 <div class="col-md-10">
                                     <select name="status" class="form-control" onchange="this.form.submit()" >
@@ -58,7 +59,7 @@
   </div>
 </div>
 
-<div class="container">
+{{-- <div class="container">
   <div class="row">
     <div class="col-md-12">
       <h4 class="card-title text-dark text-center mt-3">Inactive Jobs</h4>
@@ -91,8 +92,10 @@
                        <input type="hidden" name="id" value="{{ $jobsActive->id }}">
                             <div class="row">
                                 <div class="col-md-10">
+                                  <input type="hidden" name="user_id" value="{{ $jobsActive->user->id }}">
+                                      <input type="hidden" name="id" value="{{ $jobsActive->id }}">
                                     <select name="status" class="form-control" onchange="this.form.submit()" >
-
+                                      
                                         <option  value="" disabled selected> Select</option>
                                         <option {{ $jobsActive->status=='inactive' ? 'selected' : '' }} id="active" value="active">Active</option>
                                         <option {{ $jobsActive->status=='inactive' ? 'selected' : '' }} id="inactive" value="inactive">Inactive</option>
@@ -116,7 +119,7 @@
       </table>
     </div>
   </div>
-</div>
+</div> --}}
 
 <script>
   $(document).ready(function(){

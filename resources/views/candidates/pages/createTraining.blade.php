@@ -1,53 +1,7 @@
 @extends('candidates.dashboard')
 @section('content')
-<div class="col-lg-12 mt-4 grid-margin stretch-card">
+<div class="col-12 grid-margin">
     <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Education</h4>
-            
-            <div class="table-responsive">
-                <table class="table table-hover" id="myTable">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Institute</th>
-                            <th>Completed Year</th>
-                           
-                            <th>Action</th>
-                           
-                            
-                        </tr>
-                    </thead>
-              
-                        <tbody>
- 
-    @foreach ($trainings as $trainings )
-    <tr>
-        <td>{{ $trainings->name }}</td>
-        <td>{{ $trainings->institute_name }}</td>
-       
-       
-       <td>{{ $trainings->completion_year }}</td>
-      
-        <td class="d-flex">
-           
-
-
-     
-            <form method="POST" action="{{ url('/training/delete/'.$trainings->id) }}">
-                @csrf
-
-                <button type="submit" class="btn btn-danger confirm-button">Delete</button>
-            </form>
-        </td>
-    </tr>
-   
-    @endforeach
-
-                            
-                        </tbody>
-                  
-                </table>
         
         
         <div class="card-body">

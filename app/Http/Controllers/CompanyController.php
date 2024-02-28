@@ -35,9 +35,9 @@ class CompanyController extends Controller
     }
     public function profile(Request $request)
     {
-      
-            
-            $details = Company::create([
+
+       
+            Company::create([
                 'user_id' => auth()->user()->id,
                 'year_of_establishment' => $request->year_of_establishment,
                 'description' => $request->description,
@@ -66,11 +66,16 @@ class CompanyController extends Controller
         return redirect('/profilepage')->with('success', 'Profile Updated successfully.');
     }
     
-    function companyProfileEdit(Request $request){
+    function companyProfile(Request $request){
         
         $company = Company::where('user_id', auth()->user()->id)->first();
-   // return $company;
+        if($company){
       return view('companies.pages.profile-page', compact('company'));
+            
+        }else{
+      return view('companies.pages.createProfile', compact('company'));
+            
+        }
     }
 
     public function updateCompanyProfile(Request $request)

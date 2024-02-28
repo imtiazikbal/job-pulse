@@ -103,7 +103,7 @@
                                             <input type="hidden" name="job_id" value="{{ request()->job_id }}">
                                             <input class="form-control valid" name="current_salary" id="name"
                                                 type="number" onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
+                                                onblur="this.placeholder = 'Enter your name'" placeholder="Enter your Cureent Salary">
                                         </div>
                                         @if ($errors->has('current_salary'))
                                             <span class="text-danger">{{ $errors->first('current_salary') }}</span>
@@ -116,7 +116,7 @@
                                             <input class="form-control valid" name="excepted_salary" id="email"
                                                 type="number" onfocus="this.placeholder = ''"
                                                 onblur="this.placeholder = 'Enter excepted_salary'"
-                                                placeholder="Enter email address">
+                                                placeholder="Enter your Excepted Salary">
                                         </div>
                                         @if ($errors->has('excepted_salary'))
                                             <span class="text-danger">{{ $errors->first('excepted_salary') }}</span>

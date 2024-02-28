@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/company/profile/edit/{company}', [CompanyController::class, 'ProfileEdit'])->name('company.profile');
 Route::post('/company/profile/edit/update/{company}', [CompanyController::class, 'ProfileUpdate'])->name('company.profile');
     
-    Route::get('/profilepage', [CompanyController::class, 'companyProfileEdit']);
+    Route::get('/profilepage', [CompanyController::class, 'companyProfile']);
     Route::get('/company/profile/update', [CompanyController::class, 'updateCompanyProfile'])->name('company.update');
     Route::get('/profile/delete', [CompanyController::class, 'deleteCompanyProfile'])->name('company.delete');
 
@@ -121,14 +121,16 @@ Route::post('/company/profile/edit/update/{company}', [CompanyController::class,
     Route::POST('/experience/delete/{experience}', [CandidateExperienceController::class, 'jobExperienceDelete'])->name('candidate.job.experience');
     
 /// Professional Training
-    Route::view('job/traning', 'candidates.pages.training');
-
+    Route::get('job/traning', [CandidateProfessionalTrainingController::class, 'jobTraning']);
+    Route::get('//traing/index', [CandidateProfessionalTrainingController::class, 'trainingIndex']);
     Route::post('/candidate/training/create', [CandidateProfessionalTrainingController::class, 'trainingCreate'])->name('candidate.training.create');
-
+    Route::post('/training/delete/{training}', [CandidateProfessionalTrainingController::class, 'trainingDelete']);
+    
 //skill
 
-    Route::view('/candidate/skill/page', 'candidates.pages.skill');
+    Route::get('/candidate/skill/page',[CandidateSkillController::class, 'candidateSkillPage'])->name('skill.page');
     Route::post('/candidate/skill/create', [CandidateSkillController::class, 'Create']);
+    Route::post('/candidate/skill/delete/{skill}', [CandidateSkillController::class, 'Delete']);
 
 //admin job
 

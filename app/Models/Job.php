@@ -16,4 +16,8 @@ class Job extends Model
     public function company(){
         return $this->belongsTo(Company::class);
     }
+
+    function experience(){
+        return $this->hasMany(CandidateExperience::class);
+    }
 }

@@ -18,6 +18,8 @@
                           <th>Company Name</th>
                           <th>Location</th>
                           <th>Selary</th>
+                          <th>Selected Shortlist</th>
+
                           {{-- <th>Action</th> --}}
                         </tr>
                       </thead>
@@ -29,6 +31,10 @@
                           <td>{{ $job->company->name }}</td>
                           <td>{{ $job->job->location }}</td>
                           <td class="text-success"> {{$job->job->salary }}</td>
+                      
+                          <td>  <label class="badge badge-success">Shortlist</label></td>
+                            
+                       
                           
                           {{-- <td>
                             <a class="btn btn-primary" href=" {{ url('/job/edit/'.$job->id) }}" >Edit

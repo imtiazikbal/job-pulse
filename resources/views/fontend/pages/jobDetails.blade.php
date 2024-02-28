@@ -115,7 +115,7 @@
 
                                             <input class="form-control valid" name="excepted_salary" id="email"
                                                 type="number" onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Enter email address'"
+                                                onblur="this.placeholder = 'Enter excepted_salary'"
                                                 placeholder="Enter email address">
                                         </div>
                                         @if ($errors->has('excepted_salary'))

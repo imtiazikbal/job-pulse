@@ -9,4 +9,8 @@ class CandidateExperience extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    function experience(){
+        return $this->belongsTo(Job::class);
+    }
 }

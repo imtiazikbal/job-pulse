@@ -6,7 +6,8 @@
             <div class="card-body">
                 
                 <h4 class="card-title">Horizontal Two column</h4>
-                <form class="form-sample" action="{{ url('/job/store') }}" method="GET">
+                <form class="form-sample" action="{{ url('/job/store') }}" method="POST">
+                    @csrf
                     <p class="card-description">
                         Personal info
                     </p>

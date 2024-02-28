@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\User;
 use App\Models\Candidate;
+use App\Models\ShortList;
 use App\Models\AppliedJob;
 use Illuminate\Http\Request;
 use App\Models\CandidateSalary;
@@ -103,9 +104,9 @@ public function appliedJob(Request $request){
    
 }
 function appliedJobPage(Request $request){
-    $jobs = AppliedJob::where('user_id',auth()->user()->id)->with('job','company')->get();
+    $jobs = ShortList::where('user_id',auth()->user()->id)->with('job','company')->get();
     //return response()->json($jobs);
-    return view('candidates.pages.applied_job',compact('jobs'));
+   return view('candidates.pages.applied_job',compact('jobs'));
 }
 
 

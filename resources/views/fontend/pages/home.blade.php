@@ -1,5 +1,6 @@
 @extends('fontend.layouts.app')
 @section('content')
+
 <div class="slider-area ">
     <!-- Mobile Menu -->
     <div class="slider-active">
@@ -40,6 +41,8 @@
         </div>
     </div>
 </div>
+@include('fontend.components.categorySection')
+
 <section class="featured-job-area feature-padding">
     <div class="container">
         <!-- Section Tittle -->
@@ -157,9 +160,14 @@
             </div>
         </div>
     </div>
-    <div class="search-form text-center">
-        <a href="{{ url('/findJobs') }}" class="btn mt-20">View More</a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="browse-btn2 text-center mt-50">
+                <a href="{{ url('/findJobs') }}" class="border-btn2">View More</a>
+            </div>
+        </div>
     </div>
+    
 </section>
 
  <!-- How  Apply Process Start-->

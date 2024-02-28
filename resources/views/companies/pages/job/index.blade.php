@@ -8,7 +8,7 @@
                     <a class="btn btn-primary" href=" {{ url('/jobsCreatePage') }}">Add Job</a>
                 </p>
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="myTable">
                         <thead>
                             <tr>
                                 <th>Job Tittle</th>

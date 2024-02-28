@@ -21,4 +21,7 @@ class AppliedJob extends Model
     public function company(){
         return $this->belongsTo(User::class);
     }
+    function is_short_list(){
+        return $this->belongsTo(ShortList::class);
+    }
 }

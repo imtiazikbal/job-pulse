@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\AppliedJob;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use App\Models\CandidateExperience;
 use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
@@ -103,9 +104,13 @@ class CompanyController extends Controller
     public function companyDetails(Request $request)
     {
 
-        $details = User::where('id', $request->user_id)->with('education', 'salary', 'experience','training','skill','contact')->first();
-       //return $details;
-       return view('companies.pages.profile.cv', compact('details'));
+        $details = User::where('id', $request->user_id)->with('education', 'salary',)->first();
+        $experience = CandidateExperience::where('user_id', $request->user_id)->with('experience')->get();
+       
+       
+      //  return $details;
+     // return $experience;
+     return view('companies.pages.profile.cv', compact('details', 'experience'));
        
        // return response()->json($details);
     }

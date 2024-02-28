@@ -1,7 +1,10 @@
 @extends('admin.dashboard')
 
 @section('content')
-<table class="table">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table" id="myTable">
     <thead class="thead-dark">
       <tr>
         <th scope="col">S/N</th>
@@ -31,6 +34,9 @@
 
     </tbody>
   </table>
+    </div>
+  </div>
+</div>
 
   @if (Session::has('delete'))
    <script>

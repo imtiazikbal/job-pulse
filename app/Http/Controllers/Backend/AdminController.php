@@ -47,12 +47,13 @@ class AdminController extends Controller
         User::where('id', $id)->delete();
         return redirect()->back()->with('delete', 'Company Deleted Successfully');
     }
-
-    public function changeJobStatus(Request $request, $id)
+ function adminChangeJobStatus(Request $request)
     {
-        $job = Job::find($id);
-        $job->status = $request->status;
-        $job->save();
+//dd($request->all());
+        $id = $request->input('id');
+        Job::where('id', $id)->update([
+            'status' => $request->input('status'),
+        ]);
         return redirect()->back()->with('success', 'Job Status Changed Successfully');
 
     }
@@ -240,6 +241,17 @@ function CompanyChangePassword(Request $request){
       } catch (Exception $e) {
           return $e->getMessage();
       }
+}
+
+function CanchangeStatus(Request $request)
+{
+    //dd($request->all());
+   $job = Job::find($request->job_id);
+
+   $job->status = $request->status;
+   $job->save();
+    
+    return redirect()->back()->with('success', 'User Status Changed Successfully');
 }
 
 }

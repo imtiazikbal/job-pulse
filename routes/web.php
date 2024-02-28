@@ -81,6 +81,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/jobs', [JobController::class, 'jobs']);
     Route::view('/jobsCreatePage', 'companies.pages.job.create');
+    Route::post('/job/store', [JobController::class, 'jobStore'])->name('job.store');
+
     Route::get('/job/edit/{id}', [JobController::class, 'edit'])->name('job.edit');
     Route::get('/job/update', [JobController::class, 'jobUpdate'])->name('job.update');
     Route::post('/job/delete/{id}', [JobController::class, 'jobDelete'])->name('job.delete');
@@ -117,6 +119,9 @@ Route::middleware(['auth'])->group(function () {
 //admin job
 
     Route::get('/admin/companies', [AdminController::class, 'AdminCompanies']);
+
+    ///company
+    Route::post('/shortlisted/candidate', [JobController::class, 'shortlisted'])->name('shortlist.candidate');
 
 });
 
@@ -163,12 +168,15 @@ Route::get('/clear', function () {
     Route::post('/store/slider/delete', [AdminController::class, 'storeSliderDelete']);
 
     Route::post('/admin/companies/delete/{id}', [AdminController::class, 'Companiesdelete']);
-// Route::post('/changeStatus',[AdminController::class,'changeStatus']);
-    Route::post('/admin/jobs/status/{id}', [AdminController::class, 'changeJobStatus']);
+    
+});
+
+//admin routes
+    Route::post('/admin/change/job/status', [AdminController::class, 'adminChangeJobStatus']);
     Route::post('/admin/jobs/delete/{id}', [AdminController::class, 'jobDelete']);
     Route::get('/candidateAppliedCount', [CandidateController::class, 'totalAppliedCount']);
-    Route::get('/job/store', [JobController::class, 'jobStore'])->name('job.store');
-});
+//ajax get Route
+Route::get('/admin/can/change/status', [AdminController::class, 'CanchangeStatus'])->name('change.status');
 
 Route::get('/admin/jobs', [AdminController::class, 'AdminJobs']);
 
@@ -202,6 +210,9 @@ Route::get('/jobs/filter/experience',[JobPageController::class,'filterExperience
 
 //home page filter
 Route::get('/jobs/filter/location/title',[JobPageController::class,'filterLocationTittle']);
+Route::get('/jobs/filter/relevance/old',[JobPageController::class,'filterRelevanceOld']);
+Route::get('/jobs/filter/category/type',[JobPageController::class,'filterCategoryType']);
+Route::get('/jobs/filter/category/type/get',[JobPageController::class,'filterCategoryTypeGet'])->name('filterCategoryTypeGet');
 
 
 require __DIR__ . '/auth.php';
